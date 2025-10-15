@@ -88,10 +88,45 @@ th{ background:#f3f4f6; color:#1e3a8a }
 .kpi{ display:inline-block; padding:4px 8px; border:1px solid var(--line); border-radius:999px; font-size:12px; color:var(--muted); margin-right:6px }
 .metric{ font-variant-numeric:tabular-nums }
 .sep{ height:1px; background:var(--line); margin:16px 0 }
+
+/* === 簡易版へ戻るボタン === */
+#back-to-lite {
+  position: fixed;
+  top: 16px;
+  right: 18px;
+  background: #2563eb;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 50;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+#back-to-lite:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  #back-to-lite {
+    top: 10px;
+    right: 10px;
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+}
+  
 </style>
 </head>
 
 <body>
+<!-- 🔗 簡易版に戻るボタン（右上固定） -->
+<a href="https://adjustment-commits.github.io/pitcher-vo2max-lite/" 
+   id="back-to-lite">← 簡易版に戻る</a>
+  
 <div id="flipbook">
 
   <!-- Page 1: 表紙 -->
