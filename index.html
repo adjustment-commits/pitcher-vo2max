@@ -460,6 +460,8 @@ $(function(){
     $pages.eq(n-1).scrollTop(0);
     // URL ハッシュ（任意）
     history.replaceState(null, "", "#p="+n);
+  if(current === 1) $("#prev").hide(); else $("#prev").show();
+  if(current === total) $("#next").hide(); else $("#next").show();
   }
 
   // 初期表示（ハッシュ対応）
