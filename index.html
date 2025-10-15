@@ -82,7 +82,6 @@ th{ background:#f3f4f6; color:#1e3a8a }
   #nav-controls{ right:10px; bottom:12px }
   .nav-btn{ padding:10px 14px; font-size:14px }
   #pageIndicator{ left:12px; bottom:16px }
-   a{ font-size:15px; line-height:1.
 }
 
 /* ========== 小部品 ========== */
@@ -102,7 +101,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
   font-size: 14px;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 50;
+  z-index: 100;
   transition: background 0.25s ease, transform 0.2s ease;
 }
 #back-to-lite:hover {
@@ -110,8 +109,109 @@ th{ background:#f3f4f6; color:#1e3a8a }
   transform: translateY(-2px);
 }
 
-/* モバイル対応 */
+/* 🏃 Running Fitnessボタン */
+#link-to-run {
+  position: fixed;
+  top: 58px; /* ← 青ボタンとの間隔 */
+  right: 18px;
+  background: #16a34a;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 90;
+  white-space: nowrap; /* 改行防止 */
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+#link-to-run:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+}
+
+/* ✅ タイトル余白調整 */
+.page h1 {
+  margin-top: 100px; /* ← ボタン2段分＋余裕 */
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ✅ サブテキスト調整 */
+.page p.muted {
+  margin-top: 6px;
+  margin-bottom: 14px;
+  line-height: 1.7;
+  text-align: center;
+  word-break: keep-all;
+}
+
+/* ✅ スマホ最適化（完全統合版） */
 @media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+    background: var(--bg-soft);
+  }
+
+  #flipbook {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .page {
+    padding: 24px 16px 86px;
+  }
+
+  /* ✅ 表をカード化 */
+  table {
+    border: none;
+  }
+  table thead {
+    display: none;
+  }
+  table tr {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    background: #fff;
+  }
+  table td {
+    display: flex;
+    gap: 10px;
+    border: none;
+    padding: 6px 0;
+  }
+  table td::before {
+    content: attr(data-label);
+    flex: 0 0 46%;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ✅ 下部ナビ位置 */
+  #nav-controls {
+    right: 10px;
+    bottom: 12px;
+  }
+  .nav-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  #pageIndicator {
+    left: 12px;
+    bottom: 16px;
+  }
+
+  /* ✅ 上部ボタン完全調整 */
   #back-to-lite {
     top: 10px;
     right: 10px;
@@ -119,40 +219,33 @@ th{ background:#f3f4f6; color:#1e3a8a }
     padding: 7px 12px;
   }
 
-/* ✅ 上部リンク */
-#top-banner {
-  position: fixed;
-  top: max(10px, env(safe-area-inset-top)); /* iPhoneノッチ対応 */
-  right: 16px;
-  background: #22c55e;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  z-index: 100;
-  white-space: nowrap; /* ← 改行防止 */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
+  #link-to-run {
+    top: 72px; /* ← スマホで重ならない完全距離 */
+    right: 10px;
+    font-size: 12.5px;
+    padding: 6px 10px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
 
-/* ✅ タイトルの位置と余白調整 */
-h1 {
-  margin-top: 70px;     /* 上部リンクと重ならないように */
-  margin-bottom: 10px;  /* 下の無駄な空白を減らす */
-  line-height: 1.4;
-}
+  /* ✅ タイトル・サブテキスト余白と改行防止 */
+  .page h1 {
+    margin-top: 160px; /* ← ボタン2段分＋視覚余白 */
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    word-break: keep-all;
+  }
 
-/* ✅ サブテキストの行間と間隔を微調整 */
-#container p:first-of-type {
-  margin-top: 4px;
-  margin-bottom: 12px;
-  line-height: 1.7;
-}
-
-/* ✅ モバイル対応 */
-@media (max-width:768px){
-  h1 { margin-top: 90px; }          /* iPhoneで安全距離を確保 */
-  #container { padding: 24px 18px;} /* 横幅も少し詰める */
-}
+  .page p.muted {
+    margin-top: 8px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
 }
   
 </style>
