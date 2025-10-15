@@ -1,5 +1,6 @@
-const CACHE_NAME = "vo2max-white-v1";
-const urlsToCache = [
+const CACHE_NAME = "vo2max-flipbook-v1";
+const ASSETS_TO_CACHE = [
+  "./",
   "./index.html",
   "./manifest.json",
   "./service-worker.js",
@@ -10,35 +11,29 @@ const urlsToCache = [
 // インストール時にキャッシュ
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-  );
-  self.skipWaiting();
-});
-
-// リクエスト取得時のキャッシュ応答
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return (
-        response ||
-        fetch(event.request).then(res => {
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, res.clone());
-            return res;
-          });
-        })
-      );
-    })
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS_TO_CACHE))
+      .then(self.skipWaiting())
   );
 });
 
-// 古いキャッシュ削除
+// アクティブ時に古いキャッシュ削除
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(
-        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-      )
+      Promise.all(keys.map(key => {
+        if (key !== CACHE_NAME) return caches.delete(key);
+      }))
     )
+  );
+  self.clients.claim();
+});
+
+// リクエスト時のキャッシュ制御
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+      .catch(() => caches.match("./index.html"))
   );
 });
