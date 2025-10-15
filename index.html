@@ -118,6 +118,29 @@ th{ background:#f3f4f6; color:#1e3a8a }
     font-size: 13px;
     padding: 7px 12px;
   }
+
+  /* 🔧 上部リンクとタイトルの重なり防止 */
+#top-banner {
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top)); /* iPhoneノッチ対応 */
+  right: 16px;
+  background: #22c55e;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* 🔧 タイトルの上に十分なマージンを確保 */
+h1 {
+  margin-top: 80px;  /* ← これで重なり防止 */
+}
+
+@media (max-width:768px){
+  h1 { margin-top: 100px; } /* モバイルではさらに余白拡大 */
+}
 }
   
 </style>
