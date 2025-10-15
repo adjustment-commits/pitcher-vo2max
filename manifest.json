@@ -1,7 +1,8 @@
 {
   "name": "投手 × VO₂max — Flipbook",
   "short_name": "VO₂max Flipbook",
-  "start_url": "./index.html",
+  "start_url": "/pitcher-vo2max/index.html",
+  "scope": "/pitcher-vo2max/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
