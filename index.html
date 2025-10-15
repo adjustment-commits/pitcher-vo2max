@@ -30,6 +30,8 @@ body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:'Noto Sans JP', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   display:flex; justify-content:center; align-items:center; height:100vh; overflow:hidden;
+  background-color: #fff;
+  transition: background 0.2s ease;
 }
 
 /* ========== 本体コンテナ ========== */
@@ -98,15 +100,35 @@ th{ background:#f3f4f6; color:#1e3a8a }
     border:none;
     box-shadow:none;
   }
-  
+   /* ✅ 表をカード化 */
+  table {
+    border: none;
+  }
+  table thead {
+    display: none;
+  }
+  table tr {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    background: #fff;
+  }
+  table td {
+    display: flex;
+    gap: 10px;
+    border: none;
+    padding: 6px 0;
+  }
+  table td::before {
+    content: attr(data-label);
+    flex: 0 0 46%;
+    color: var(--accent);
+    font-weight: 600;
+  }
   .page{ padding:160px 16px 120px; }
 
-  /* 表をカード化 */
-  table{ border:none }
-  table thead{ display:none }
-  table tr{ display:block; border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin:10px 0; background:#fff }
-  table td{ display:flex; gap:10px; border:none; padding:6px 0 }
-  table td::before{ content:attr(data-label); flex:0 0 46%; color:var(--accent); font-weight:600 }
   /* ナビ */
   #nav-controls{ right:10px; bottom:12px }
   .nav-btn{ padding:10px 14px; font-size:14px }
@@ -169,33 +191,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
   background: #16a34a;
 }
  
-  /* ✅ 表をカード化 */
-  table {
-    border: none;
-  }
-  table thead {
-    display: none;
-  }
-  table tr {
-    display: block;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin: 10px 0;
-    background: #fff;
-  }
-  table td {
-    display: flex;
-    gap: 10px;
-    border: none;
-    padding: 6px 0;
-  }
-  table td::before {
-    content: attr(data-label);
-    flex: 0 0 46%;
-    color: var(--accent);
-    font-weight: 600;
-  }
+ 
 
   /* ✅ 下部ナビ位置 */
   #nav-controls {
@@ -261,6 +257,11 @@ th{ background:#f3f4f6; color:#1e3a8a }
   margin-top: 4px;
   line-height: 1.4;
 }
+   .center-smart {
+  text-align: center;
+  line-height: 1.5;
+  word-break: keep-all;
+}
 
 /* ✅ スマホで少し上に寄せてバランス調整 */
 @media (max-width: 768px) {
@@ -289,10 +290,25 @@ th{ background:#f3f4f6; color:#1e3a8a }
   .page {
     padding-bottom: 120px; /* ← 下部ボタンと被らない安全マージン */
   }
-  .center-smart {
-  text-align: center;
-  line-height: 1.5;
-  word-break: keep-all;
+ .page:last-child {
+  padding-bottom: 160px; /* ←下ナビに被らないよう確保 */
+}
+  .callout {
+  border-left: 4px solid var(--accent);
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 14px 0;
+  line-height: 1.7;
+}
+  
+.good.callout { border-color: var(--good); }
+.warn.callout { border-color: var(--warn); }
+.bad.callout  { border-color: var(--bad); }
+ 
+  .subtitle {
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 }
   
@@ -300,6 +316,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
 </head>
 
 <body>
+ 
 <!-- 🔗 簡易版・Running Fitness リンク（ページ上部に埋め込み） -->
 <div class="top-links">
   <a href="https://adjustment-commits.github.io/pitcher-running-fitness-2025-10/" class="blue">
