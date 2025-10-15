@@ -162,7 +162,10 @@ th{ background:#f3f4f6; color:#1e3a8a }
   max-width: 95%;
   margin-left: auto;
   margin-right: auto;
-} 
+  font-size: clamp(14px, 3vw, 20px); /* ← ここで統一 */
+  line-height: 1.4;
+  font-weight: 700;
+}
 
 /* ✅ サブテキスト調整 */
 .page p.muted {
@@ -357,7 +360,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
       出力を生むのがウエイト。<br>出力を戻すのが酸素。<br>両輪が噛み合ってこそ、<br>終盤でも球質は落ちない。
     </p>
     <div class="sep"></div>
-    <p>この資料は、投手におけるVO₂maxの意味、評価、<span class="br-sp"></span>トレーニング、期分け、モニタリングまでを<span class="br-sp"></span>一気通貫でまとめた実践ガイドです。  
+    <p>この資料は投手におけるVO₂maxの意味、評価、<span class="br-sp"></span>トレーニング、期分け、モニタリングまでを<span class="br-sp"></span>一気通貫でまとめた実践ガイドです。  
   
     <p style="text-align:center;margin-top:40px;color:#94a3b8">© 2025 adjustment-lab</p>
   </div>
@@ -366,11 +369,11 @@ th{ background:#f3f4f6; color:#1e3a8a }
   <div class="page">
     <h2 class="center-smart">
     1. VO₂maxとは何か（投手視点）</h2>
-    <p>VO₂maxは<strong>体重1kgあたり1分間に取り込める酸素量（ml/kg/min）</strong>。<br>持久系では“天井”だが投手では、<br><strong>「一球ごとにニュートラルへ戻す速度」の実用指標。</p>
+    <p>VO₂maxは<strong>体重1kgあたり1分間に取り込める酸素量（ml/kg/min）</strong>。<br><br>持久系では“天井”だが投手では、<br><strong>「一球ごとにニュートラルへ戻す速度」<span class="br-sp"></span>の実用指標。</p>
     <div class="callout">
       <strong>投手にとっての翻訳：</strong> VO₂max ↑ → 代謝産物の処理（乳酸→ピルビン酸）が速い → 心拍・呼吸が早く整う → リリース再現性が保たれる。
     </div>
-    <p class="muted">※VO₂maxは単独指標では万能ではない。<br><em>HRR（Heart Rate Recovery）</em>や<em>VT2（無酸素性作業閾値）</em>と合わせて運用すると精度が上がる。</p>
+    <p class="muted">※VO₂maxは単独指標では万能ではない。<br><em>HRR（Heart Rate Recovery）</em>や<br><em>VT2（無酸素性作業閾値）</em>と<br>合わせて運用すると精度が上がる。</p>
   </div>
 
   <!-- Page 3: 二軸構造 -->
@@ -385,12 +388,12 @@ th{ background:#f3f4f6; color:#1e3a8a }
       </tr>
       <tr>
         <td data-label="系統">回復系（持続）</td>
-        <td data-label="主機構">酸化系<span class="br-sp"></span><strong>（ミトコンドリア・毛細血管）</td>
+        <td data-label="主機構">酸化系（ミトコンドリア・毛細血管）</td>
         <td data-label="狙い">心拍降下・乳酸クリアランス・集中維持</td>
       </tr>
     </table>
-    <p>偏りの典型：<strong>出力のみ↑</strong>＝前半だけ速い／<span class="br-sp"></span><strong>回復のみ↑</strong>＝キレが出にくい。  
-    <br>バランスを取ることで「<em>投げる→戻す→投げる</em>」の<span class="br-sp"></span>周期が安定する。</p>
+    <p>偏りの典型：<strong>出力のみ↑</strong>＝前半だけ速い／<span class="br-sp"></span><strong>回復のみ↑</strong>＝キレが出にくい。<br>  
+    <br>バランスを取ることで「<em>投げる→戻す→投げる</em>」の周期が安定する。</p>
   </div>
 
   <!-- Page 4: メカニズム深掘り -->
@@ -398,10 +401,10 @@ th{ background:#f3f4f6; color:#1e3a8a }
     <h2 class="center-smart">
     3. 何が“回復速度”を決めているか<span class="subtitle">（生理メカニズム）</span></h2>
     <ul>
-      <li><strong>心拍回復（HRR）：</strong> 運動停止1分後の心拍低下幅。<span class="br-sp"></span>迷走神経再賦活の速さ＝「落ち着く速さ」。</li>
-      <li><strong>乳酸シャトル：</strong> 産生乳酸を酸化燃料として再利用。<br>毛細血管密度とミトコンドリア量が鍵。</li>
-      <li><strong>換気閾値（VT1/VT2）：</strong> 呼吸制御が跳ね上がる境界。<br>VT2↑は「後半の崩れにくさ」に直結。</li>
-      <li><strong>交感/副交感バランス：</strong> 過剰な交感優位は手元の微細制御を乱す。<br>呼吸介入で制御可能。</li>
+      <li><strong>心拍回復（HRR）：<br></strong> 運動停止1分後の心拍低下幅。<br>迷走神経再賦活速さ＝「落ち着く速さ」。</li><br>
+      <li><strong>乳酸シャトル：<br></strong> 産生乳酸を酸化燃料として再利用。<br>毛細血管密度とミトコンドリア量が鍵。</li><br>
+      <li><strong>換気閾値（VT1/VT2）：<br></strong> 呼吸制御が跳ね上がる境界。<br>VT2↑は「後半の崩れにくさ」に直結。</li><br>
+      <li><strong>交感/副交感バランス：<br></strong> 過剰な交感優位は手元の微細制御を乱す。<br>呼吸介入で制御可能。</li>
     </ul>
     <div class="good callout"><strong>実務要点：</strong> HRR↑とVT2↑がセットで伸びるプログラム＝「速く整って、長く保つ」投手を作る。</div>
   </div>
@@ -436,11 +439,11 @@ th{ background:#f3f4f6; color:#1e3a8a }
     <h2 class="center-smart">
     5. VO₂maxが低い場合に起きること</h2>
     <ul>
-      <li>連投・ロングで顕著なパフォーマンス低下<span class="br-sp"></span>（乳酸蓄積→運動単位の同期乱れ）</li>
-      <li>心拍／呼吸が整わず、意思決定が粗くなる<span class="br-sp"></span>（交感神経の過剰残留）</li>
+      <li>連投・ロングで顕著なパフォーマンス低下<span class="br-sp"></span>（乳酸蓄積→運動単位の同期乱れ）</li><br>
+      <li>心拍／呼吸が整わず、意思決定が粗くなる<span class="br-sp"></span>（交感神経の過剰残留）</li><br>
       <li>フォーム変位→関節負担↑→慢性痛の温床</li>
     </ul>
-    <div class="bad callout"><strong>比喩<br></strong> 火力のあるエンジンに小さいラジエーター。<br>最初は速いが後半で焼き付く。</div>
+    <div class="bad callout"><strong>比喩<br></strong> 火力あるエンジンに小さいラジエーター。<br>最初は速いが後半で焼き付く。</div>
   </div>
 
   <!-- Page 7: 指標の読み方（VO2max, VT, HRR） -->
@@ -471,7 +474,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
   <div class="page">
     <h2 class="center-smart">
     7. クーパー走（12分走）</h2>
-    <p><strong>推定式：</strong> VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</p>
+    <p><strong>推定式：<span class="br-sp"></span></strong> VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</p>
     <table>
       <tr><td data-label="12分距離">2500m</td><td data-label="推定VO₂max">約45</td><td data-label="評価">平均</td></tr>
       <tr><td data-label="12分距離">2800m</td><td data-label="推定VO₂max">約52</td><td data-label="評価">良好</td></tr>
@@ -486,33 +489,33 @@ th{ background:#f3f4f6; color:#1e3a8a }
     <h2 class="center-smart">
     7+. クーパー走の深掘り（意味）</h2>
     <p>クーパー走は1968年に米空軍の<em>Dr. Kenneth Cooper</em>が開発したシンプルかつ高信頼の持久力テスト。<br>  
-    12分間での走行距離からVO₂maxを推定できるため、<span class="br-sp"></span><strong>専用機器を使わずに“酸素エンジン”を可視化</strong>できる。</p>
+    12分間での走行距離からVO₂maxを推定できるため、専用機器を使わずに“酸素エンジン”を可視化</strong>できる。</p>
 
     <div class="callout">
       <strong>目的：</strong> 有酸素系（酸化系）の総合的キャパシティを測る。<br>  
-      投手では「登板翌日の回復力」と「総酸素供給能」を<span class="br-sp"></span><strong>確認する目安になる。
+      投手では「登板翌日の回復力」と「総酸素供給能」を確認する目安になる。
     </div>
 
     <h3>■ 実施方法</h3>
     <ul>
       <li>400mトラック、もしくはGPSで計測。</li>
       <li>12分間一定ペースで<strong>総距離（m）</strong>を測定。</li>
-      <li>試合前後・オフ期などで3ヶ月ごとに再計測。</li>
+      <li>試合前後・オフ期などで3ヶ月毎に再計測。</li>
     </ul>
 
     <h3>■ 評価例（社会人投手）</h3>
     <table>
-      <tr><td data-label="距離">2300m未満</td><td data-label="分類">要改善</td><td data-label="状態">酸素利用能が低く、<span class="br-sp"></span>後半の疲労回復遅い</td></tr>
-      <tr><td data-label="距離">2500〜2800m</td><td data-label="分類">平均域</td><td data-label="状態">登板間の回復は中程度。<span class="br-sp"></span>中継ぎ向き</td></tr>
-      <tr><td data-label="距離">3000m前後</td><td data-label="分類">良好</td><td data-label="状態">先発登板可。<span class="br-sp"></span>イニング間リカバリ速い</td></tr>
+      <tr><td data-label="距離">2300m未満</td><td data-label="分類">要改善</td><td data-label="状態">酸素利用能が低く<br>後半の疲労回復遅い</td></tr>
+      <tr><td data-label="距離">2500〜2800m</td><td data-label="分類">平均域</td><td data-label="状態">登板間の回復は中程度。<br>中継ぎ向き</td></tr>
+      <tr><td data-label="距離">3000m前後</td><td data-label="分類">良好</td><td data-label="状態">先発登板可。<br>イニング間リカバリ速い</td></tr>
       <tr><td data-label="距離">3200m超</td><td data-label="分類">理想</td><td data-label="状態">持久・回復・集中が高水準</td></tr>
     </table>
 
     <h3>■ 解釈ポイント</h3>
     <ul>
-      <li>距離＝酸素利用能力 × 筋持久力 × 精神集中力の<span class="br-sp"></span>複合結果。</li>
-      <li>フォームが崩れる＝筋出力・酸素利用リズムの不一致。</li>
-      <li>心拍データを取れば「有酸素閾値（VT1）」の<span class="br-sp"></span>確認にも使える。</li>
+      <li>距離＝酸素利用能力 × 筋持久力 × 精神集中力の複合結果。</li><br>
+      <li>フォームが崩れる＝筋出力・酸素利用リズムの不一致。</li><br>
+      <li>心拍データを取れば「有酸素閾値（VT1）」の確認にも使える。</li>
     </ul>
 
     <div class="good callout">
@@ -525,7 +528,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
   <div class="page">
     <h2 class="center-smart">
       8. Yo-Yo インターミッテント<span class="subtitle">・リカバリーテスト</span></h2>
-    <p><strong>推定式：</strong> VO₂max ≒ (距離[m] × 0.0084) + 36.4</p>
+    <p><strong>推定式：<span class="br-sp"></span></strong> VO₂max ≒ (距離[m] × 0.0084) + 36.4</p>
     <table>
       <tr><td data-label="距離">1600m</td><td data-label="推定VO₂max">約49</td><td data-label="評価">平均</td></tr>
       <tr><td data-label="距離">2000m</td><td data-label="推定VO₂max">約53</td><td data-label="評価">良好</td></tr>
@@ -541,7 +544,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
   <div class="page">
     <h2 class="center-smart">
       8+. Yo-Yoテストの深掘り<span class="subtitle">（断続的高強度評価）</span></h2>
-    <p>デンマークのBangsboらによって開発されたYo-Yo Intermittent Recovery Test（ヨーヨーテスト）は、<br>
+    <p>デンマークのBangsboらによって開発されたYo-Yo Intermittent Recovery Test（ヨーヨーテスト）は、
     高強度と低強度を繰り返す競技特性に最も近い“現場型”の評価法である。</p>
 
     <div class="callout">
@@ -550,8 +553,8 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
     <h3>■ 原理と形式</h3>
     <ul>
-      <li>20m間を往復（音声信号に合わせて走行）。</li>
-      <li>往復ごとにペースが上昇、失敗2回で終了。</li>
+      <li>20m間を往復（音声信号に合わせる）。</li><br>
+      <li>往復ごとにペース上昇、失敗2回で終了。</li><br>
       <li>休息は10秒歩行（リカバリ区間）。</li>
     </ul>
 
@@ -570,8 +573,8 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
     <h3>■ 実施上の注意</h3>
     <ul>
-      <li>平坦で滑りにくい人工芝・体育館推奨。</li>
-      <li>実施時は2人1組で「判定係＋ランナー」。</li>
+      <li>平坦で滑りにくい人工芝・体育館推奨。</li><br>
+      <li>実施時は2人1組で「判定係＋ランナー」。</li><br>
       <li>心拍計と組み合わせてHRR・最高心拍を<span class="br-sp"></span><strong>同時計測すると有益。</li>
     </ul>
 
@@ -587,10 +590,10 @@ th{ background:#f3f4f6; color:#1e3a8a }
   <div class="page">
     <h2 class="center-smart">
       9. VO₂maxを高めるトレーニング設計</h2>
-    <h3>9.1 高強度インターバル（VO₂max直撃）</h3>
+    <h3>9.1 高強度インターバル（VO₂max）</h3>
     <ul>
-      <li>30–60秒高強度（RPE 8–9）<span class="br-sp"></span>→ 60–120秒回復 × 6–10セット</li>
-      <li>例：400m × 8（目標タイム設定）</li>
+      <li>30–60秒高強度（RPE 8–9）<span class="br-sp"></span>→ 60–120秒回復 × 6–10セット</li><br>
+      <li>400m × 8（目標タイム設定）</li>
     </ul>
     <h3>9.2 テンポ走／閾値走（VT2押し上げ）</h3>
     <ul>
@@ -613,10 +616,10 @@ th{ background:#f3f4f6; color:#1e3a8a }
      10. マイクロサイクル（先発志向の例）</h2>
     <table>
       <tr><td data-label="日程">試合後（D0）</td><td data-label="内容">アクティブリカバリ＋呼吸（HRR↑）／上半身可動</td></tr>
-      <tr><td data-label="日程">D1</td><td data-label="内容">下肢ウエイト（出力）<span class="br-sp"></span>＋低強度有酸素20–30分</td></tr>
-      <tr><td data-label="日程">D2</td><td data-label="内容">VO₂maxインターバル（30–60秒×6–10）<span class="br-sp"></span>＋技術投球軽め</td></tr>
-      <tr><td data-label="日程">D3</td><td data-label="内容">テンポ走（閾値域）or <span class="br-sp"></span>Yo-Yo刺激＋中強度投球</td></tr>
-      <tr><td data-label="日程">D4</td><td data-label="内容">可動・シャドー・<span class="br-sp"></span>短時間スプリント</td></tr>
+      <tr><td data-label="日程">D1</td><td data-label="内容">下肢ウエイト（出力）<br>＋低強度有酸素20–30分</td></tr>
+      <tr><td data-label="日程">D2</td><td data-label="内容">VO₂maxインターバル（30–60秒×6–10）<br>＋技術投球軽め</td></tr>
+      <tr><td data-label="日程">D3</td><td data-label="内容">テンポ走（閾値域）or <br>Yo-Yo刺激＋中強度投球</td></tr>
+      <tr><td data-label="日程">D4</td><td data-label="内容">可動・シャドー・<br>短時間スプリント</td></tr>
       <tr><td data-label="日程">D5</td><td data-label="内容">試合（先発）</td></tr>
     </table>
     <p class="muted">※投球量・疲労度に応じてD2/D3の強度や量を調整。</p>
@@ -627,10 +630,10 @@ th{ background:#f3f4f6; color:#1e3a8a }
     <h2 class="center-smart">
       11. モニタリングと意思決定ルール</h2>
     <table>
-      <tr><td data-label="項目">HRR（1分）</td><td data-label="目安">-20bpm以上</td><td data-label="判断">良好：予定強度OK／不良：強度を一段下げる</td></tr>
-      <tr><td data-label="項目">RPE（前日→当日）</td><td data-label="目安">+2以上の悪化</td><td data-label="判断">ボリューム削減／有酸素のみに変更</td></tr>
-      <tr><td data-label="項目">主観回復（1–10）</td><td data-label="目安">≦5</td><td data-label="判断">高強度中止／テクニックと可動へ</td></tr>
-      <tr><td data-label="項目">安静時心拍</td><td data-label="目安">平常+7bpm以上</td><td data-label="判断">疲労／感染兆候。リカバリ優先</td></tr>
+      <tr><td data-label="項目">HRR（1分）</td><td data-label="目安">-20bpm以上</td><td data-label="判断">良好：予定強度OK／<br>不良：強度を一段下げる</td></tr>
+      <tr><td data-label="項目">RPE（前日→当日）</td><td data-label="目安">+2以上の悪化</td><td data-label="判断">ボリューム削減／<br>有酸素のみに変更</td></tr>
+      <tr><td data-label="項目">主観回復（1–10）</td><td data-label="目安">≦5</td><td data-label="判断">高強度中止／<br>テクニックと可動へ</td></tr>
+      <tr><td data-label="項目">安静時心拍</td><td data-label="目安">平常+7bpm以上</td><td data-label="判断">疲労／感染兆候。<br>リカバリ優先</td></tr>
     </table>
     <div class="warn callout"><strong>赤信号：</strong> めまい・頭痛・胸痛・呼吸苦／<span class="br-sp"></span>痛みの悪化→セッション中止・医療相談。</div>
   </div>
@@ -642,7 +645,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
     <table>
       <tr><td data-label="区分">リリーフ</td><td data-label="狙い">短時間高出力＋HRR高速化</td><td data-label="備考">VO₂max 50–55／Yo-Yoで回復能力を要件化</td></tr>
       <tr><td data-label="区分">先発（推奨）</td><td data-label="狙い">VO₂max 58–62／VT2↑／HRR↑</td><td data-label="備考">クーパー3100–200m相当</td></tr>
-      <tr><td data-label="区分">学童〜高校</td><td data-label="狙い">基礎の土台（心肺×動きづくり）</td><td data-label="備考">種目多様性・楽しく</td></tr>
+      <tr><td data-label="区分">学童〜高校</td><td data-label="狙い">基礎の土台<br>（心肺×動きづくり）</td><td data-label="備考">種目多様性・楽しく</td></tr>
       <tr><td data-label="区分">大学〜社会人</td><td data-label="狙い">登板間回復・HRR指導</td><td data-label="備考">Yo-Yo IR1/IR2導入</td></tr>
       <tr><td data-label="区分">独立〜プロ</td><td data-label="狙い">長期シーズン疲労管理</td><td data-label="備考">移動・暑熱・連投への適応</td></tr>
     </table>
@@ -654,12 +657,12 @@ th{ background:#f3f4f6; color:#1e3a8a }
     <h2 class="center-smart">
     13. 参考と要点の再確認</h2>
     <ul>
-      <li>クーパー式：VO₂max ≒ (距離[m] − 504.9) ÷ 44.73（1968, Cooper）</li>
-      <li>Yo-Yo換算の代表例：VO₂max ≒ (距離 × 0.0084) + 36.4（Bangsbo系式の一例）</li>
+      <li>クーパー式：VO₂max ≒ (距離[m] − 504.9) ÷ 44.73（1968, Cooper）</li><br>
+      <li>Yo-Yo換算の代表例：VO₂max ≒ (距離 × 0.0084) + 36.4（Bangsbo系式の例）</li><br>
       <li>投手サンプル：投手で50台前半の報告が多い／先発＞救援の数値傾向報告もあり</li>
     </ul>
     <div class="callout">
-      <strong>まとめ：</strong> 先発志向なら <span class="metric">VO₂max 58–62</span> をベースに<span class="metric">VT2↑</span> と <span class="metric">HRR↑</span> を両輪で高める。<br>
+      <strong>まとめ：</strong> 先発志向なら <span class="metric">VO₂max 58–62</span> をベースに<span class="metric">VT2↑</span> と <span class="metric">HRR↑</span> を両輪狙い。<br>
       トレーニングは「直撃」「閾値」「土台」の三層で期分けし、指標で意思決定せよ。
     </div>
     <p class="muted">注：文献の詳細は原典で要確認。<br>測定系・季節・対象差で値は変動する。</p>
@@ -673,24 +676,24 @@ th{ background:#f3f4f6; color:#1e3a8a }
     <br>単調な長距離走を強要し出力系を鈍らせた過去の弊害が、現在の“走り込み否定”を生んだ。</p>
 
     <div class="callout">
-      <strong>しかし、本質は逆だ。</strong><br>
+      <strong>しかし、本質は逆。</strong><br>
       VO₂maxや心拍回復（HRR）は「出力の質を戻す仕組み」を科学的に扱うもの。<br>  
-      つまり<strong>走り込みの“否定”ではなく“再定義”が必要</strong>なのだ。
+      つまり<strong>走り込みの“否定”ではなく“再定義”が必要</strong>。
     </div>
 
     <h3>■ VO₂maxアプローチが不要なタイプも存在</h3>
     <ul>
-      <li><strong>超短時間決着型：</strong> 1イニング全力型リリーフ。HRRより爆発出力の維持が重要。</li>
-      <li><strong>筋発達優位型：</strong> 瞬発出力・重量志向。<span class="br-sp"></span>心拍制御より筋間協調を優先。</li>
+      <li><strong>超短時間決着型：</strong> 1イニング全力型リリーフ。<br>HRRより爆発出力の維持が重要。</li><br>
+      <li><strong>筋発達優位型：</strong> 瞬発出力・重量志向。<span class="br-sp"></span>心拍制御より筋間協調を優先。</li><br>
       <li><strong>呼吸・自律神経が極端に敏感なタイプ：</strong> 有酸素負荷で逆に調律を乱す場合がある。</li>
     </ul>
 
     <p>「全員がVO₂maxを上げる必要がある」わけではない。  
-   <br><strong>ただし——それを“理解したうえで上げない”のか、<span class="br-sp"></span>“知らずに避けている”のかでは結果がまるで違う。</strong></p>
+   <br><strong>ただし——それを“理解した上で上げない”のか、<span class="br-sp"></span>“知らずに避けている”のかでは結果が違う。</strong></p>
 
     <div class="good callout">
       <strong>知って取り組む投手</strong>：<br>  
-      ・自分のタイプと目的を把握し、必要な生理系にだけ投資する。<br>  
+      ・自分のタイプと目的を把握し、必要な生理系にだけ投資する。<br><br> 
       ・練習量を減らしてもパフォーマンスを落とさない。  
 
       <br><br><strong>知らずに避ける投手</strong>：<br>  
@@ -699,7 +702,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
     </div>
 
     <h3>■ 結語</h3>
-    <p>VO₂maxは数字の話ではなく「再現性を設計する力」<span class="br-sp"></span><strong>そのもの。<br>  
+    <p>VO₂maxは数字の話ではなく「再現性を設計する力」<strong>そのもの。<br>  
     走る・走らないという二元論を超えて<strong>自分の出力を戻す最適な仕組みを持つこと</strong>が、  
     現代の投手にとっての“走り込みの再定義”である。</p>
 
