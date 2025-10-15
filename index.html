@@ -329,17 +329,13 @@ th{background:#f3f4f6;color:#1e3a8a;}
 </div>
 
 <script>
-$(function(){
-  const $book = $("#flipbook");
-  let current = 1;
-  const pages = $(".page").length;
+function showPage(n) {
+  $(".page").removeClass("active");     // すべて非表示
+  $(".page").eq(n - 1).addClass("active"); // 指定ページを表示
+  current = n;
+}
 
-  function showPage(n){
-    $(".page").hide().eq(n-1).fadeIn(250);
-    current = n;
-  }
-
-  showPage(1);
+showPage(1); // ← 最初のページをアクティブ表示
 
   $("#next").on("click",()=>{ if(current<pages) showPage(current+1); });
   $("#prev").on("click",()=>{ if(current>1) showPage(current-1); });
