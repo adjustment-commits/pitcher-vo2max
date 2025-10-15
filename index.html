@@ -121,40 +121,39 @@ th{ background:#f3f4f6; color:#1e3a8a }
   word-break: keep-all;
 }
 
-/* ✅ スマホで上部リンクを横並びに */
-@media (max-width: 768px) {
-  .top-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    position: fixed;
-    top: 8px;
-    left: 0;
-    width: 100%;
-    z-index: 20;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(6px);
-    padding: 8px 0;
-  }
+/* ✅ 上部リンクを全デバイスで装飾（スマホ・iPad・PC） */
+.top-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: fixed;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  padding: 8px 0;
+}
 
-  .top-links a {
-    display: inline-block;
-    text-decoration: none;
-    border-radius: 8px;
-    padding: 6px 10px;
-    font-size: 13px;
-    color: #fff;
-    white-space: nowrap;
-  }
+.top-links a {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #fff;
+  white-space: nowrap;
+}
 
-  .top-links a.blue {
-    background: #2563eb;
-  }
+.top-links a.blue {
+  background: #2563eb;
+}
 
-  .top-links a.green {
-    background: #16a34a;
-  }
+.top-links a.green {
+  background: #16a34a;
+}
  
   /* ✅ 表をカード化 */
   table {
