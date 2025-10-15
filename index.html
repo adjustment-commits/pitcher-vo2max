@@ -232,6 +232,19 @@ th{ background:#f3f4f6; color:#1e3a8a }
     line-height: 1.7;
     word-break: keep-all;
   }
+
+  /* PCでは非表示（改行しない） */
+.br-sp {
+  display: none;
+}
+
+/* ✅ スマホだけ改行に変える */
+@media (max-width: 768px) {
+  .br-sp {
+    display: block;
+    height: 0;
+    margin: 0;
+  }
 }
   
 </style>
@@ -274,7 +287,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
   <!-- Page 3: 二軸構造 -->
   <div class="page">
-    <h2>2. 投球エネルギーは「出力系 × 回復系」の二軸</h2>
+    <h2>2. 投球エネルギーは<span class="br-sp"></span>「出力系 × 回復系」の二軸</h2>
     <table>
       <tr>
         <td data-label="系統">出力系（爆発）</td>
@@ -293,7 +306,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
   <!-- Page 4: メカニズム深掘り -->
   <div class="page">
-    <h2>3. 何が“回復速度”を決めているか（生理メカニズム）</h2>
+    <h2>3. 何が“回復速度”を決めているか<span class="br-sp"></span>（生理メカニズム）</h2>
     <ul>
       <li><strong>心拍回復（HRR）：</strong> 運動停止1分後の心拍低下幅。迷走神経再賦活の速さ＝「落ち着く速さ」。</li>
       <li><strong>乳酸シャトル：</strong> 産生乳酸を酸化燃料として再利用。毛細血管密度とミトコンドリア量が鍵。</li>
@@ -305,7 +318,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
   <!-- Page 5: 高VO2maxの強み -->
   <div class="page">
-    <h2>4. VO₂maxが高いと何が良いか（メカ×結果）</h2>
+    <h2>4. VO₂maxが高いと何が良いか<span class="br-sp"></span>（メカ×結果）</h2>
     <table>
       <tr>
         <td data-label="メカ">HRR↑（1分で-20〜30bpm目安）</td>
@@ -340,7 +353,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
   <!-- Page 7: 指標の読み方（VO2max, VT, HRR） -->
   <div class="page">
-    <h2>6. 指標の読み方（VO₂max・VT・HRRを束ねて使う）</h2>
+    <h2>6. 指標の読み方<span class="br-sp"></span>（VO₂max・VT・HRRを束ねて使う）</h2>
     <table>
       <tr>
         <td data-label="指標">VO₂max</td>
@@ -376,7 +389,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
    
   <!-- Page 8-1: クーパー走 深掘り -->
   <div class="page">
-    <h2>7+. クーパー走の深掘り（12分間走の意味）</h2>
+    <h2>7+. クーパー走の深掘り<span class="br-sp"></span>（12分間走の意味）</h2>
     <p>クーパー走は1968年に米空軍の<em>Dr. Kenneth Cooper</em>が開発したシンプルかつ高信頼の持久力テスト。  
     12分間での走行距離からVO₂maxを推定できるため、<strong>専用機器を使わずに“酸素エンジン”を可視化</strong>できる。</p>
 
@@ -415,7 +428,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
   <!-- Page 9: Yo-Yo -->
   <div class="page">
-    <h2>8. Yo-Yo インターミッテント・リカバリーテスト</h2>
+    <h2>8. Yo-Yo インターミッテント<span class="br-sp"></span>・リカバリーテスト</h2>
     <p><strong>推定式：</strong> VO₂max ≒ (距離[m] × 0.0084) + 36.4</p>
     <table>
       <tr><td data-label="距離">1600m</td><td data-label="推定VO₂max">約49</td><td data-label="評価">平均</td></tr>
@@ -430,7 +443,7 @@ th{ background:#f3f4f6; color:#1e3a8a }
 
     <!-- Page 9-1: Yo-Yoテスト 深掘り -->
   <div class="page">
-    <h2>8+. Yo-Yoテストの深掘り（断続的高強度評価）</h2>
+    <h2>8+. Yo-Yoテストの深掘り<span class="br-sp"></span>（断続的高強度評価）</h2>
     <p>デンマークのBangsboらによって開発されたYo-Yo Intermittent Recovery Test（ヨーヨーテスト）は、<br>
     高強度と低強度を繰り返す競技特性に最も近い“現場型”の評価法である。</p>
 
