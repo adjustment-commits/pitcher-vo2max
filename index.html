@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>投手 × VO₂max — White Edition</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<style>
+body {
+  background:#ffffff;
+  color:#1e293b;
+  font-family:'Noto Sans JP',sans-serif;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
+}
+
+#container {
+  width:90%;
+  max-width:900px;
+  background:#ffffff;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  box-shadow:0 0 18px rgba(0,0,0,0.05);
+  padding:40px;
+  margin:60px 0 80px;
+}
+
+h1,h2,h3 {
+  color:#2563eb;
+  margin-top:0;
+}
+a { color:#1d4ed8; text-decoration:none; }
+p,li { line-height:1.9; }
+ul{margin:8px 0 0 0;padding-left:20px;}
+table{width:100%;border-collapse:collapse;margin-top:10px;}
+th,td{border:1px solid #d1d5db;padding:8px;text-align:left;}
+th{background:#f3f4f6;color:#1f2937;}
+strong{color:#111827;}
+
+#nav-controls {
+  position:fixed;
+  bottom:20px;
+  right:16px;
+  display:flex;
+  gap:10px;
+  z-index:100;
+}
+.nav-btn {
+  background:#2563eb;
+  border:none;
+  color:#ffffff;
+  padding:10px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:background 0.2s ease;
+}
+.nav-btn:hover { background:#1d4ed8; }
+
+@media(max-width:768px){
+  #container { padding:24px; }
+  .nav-btn{padding:8px 12px;font-size:14px;border-radius:8px;}
+}
+</style>
+</head>
+
+<body>
+<div id="container">
+  <div class="page" data-page="1">
+    <h1 style="text-align:center;">投手 × VO₂max — Flipfile（White Edition）</h1>
+    <p style="text-align:center;color:#475569;">出力を生むのがウエイト。出力を戻すのが酸素。<br>両輪が揃って、先発投手は完成する。</p>
+    <p style="text-align:center;color:#64748b;margin-top:60px;">© 2025 ADJUSTMENT LAB</p>
+  </div>
+
+  <div class="page" data-page="2">
+    <h2>1. 投手にとってのVO₂maxとは？</h2>
+    <p>投手は「爆発的出力」と「回復」の両方を要求される特殊なアスリートである。  
+    VO₂max（最大酸素摂取量）は、その中でも<strong>疲労からどれだけ速く回復できるか</strong>を決める生命線だ。</p>
+    <p>酸素を多く取り込める身体は、乳酸や水素イオンなどの疲労物質を早く処理し、ATP再合成を速める。  
+    言い換えれば「一球ごとに回復する投手」は、VO₂maxが高い投手である。</p>
+  </div>
+
+  <div class="page" data-page="3">
+    <h2>2. 投球エネルギーの二軸構造</h2>
+    <p>投手のパフォーマンスは、次の２つの“エネルギー軸”で構成される。</p>
+    <table>
+      <tr><th>系統</th><th>内容</th><th>主なトレーニング</th></tr>
+      <tr><td>① 出力系（Power）</td><td>ATP-CP系・解糖系で瞬間的に力を生み出す</td><td>ウエイト／スプリント／プライオ</td></tr>
+      <tr><td>② 回復系（Recovery）</td><td>酸素を使い、代謝物を処理して再エネルギー化</td><td>VO₂max向上トレーニング</td></tr>
+    </table>
+    <p><strong>ウエイト＝燃やす力</strong>、<strong>VO₂max＝燃えたあとを立て直す力</strong>。  
+    出力と回復が噛み合ったとき、投手は「8回でも球質が落ちない」存在になる。</p>
+  </div>
+
+  <div class="page" data-page="4">
+    <h2>3. VO₂maxが高い投手の特徴</h2>
+    <ul>
+      <li>イニング間・登板間の回復速度が速い</li>
+      <li>終盤でも球速・リリースの再現性が高い</li>
+      <li>心拍降下が早く、精神的に安定して投げられる</li>
+      <li>乳酸閾値（LT）が高く、疲労が蓄積しにくい</li>
+    </ul>
+    <p>VO₂maxが高い投手は、単に「走れる」選手ではない。  
+    <strong>身体のエネルギー管理能力が高い＝最後まで投げ抜く耐性がある</strong>ということだ。</p>
+  </div>
+
+  <div class="page" data-page="5">
+    <h2>4. VO₂maxが低い投手のリスク</h2>
+    <ul>
+      <li>代謝回復が遅く、翌日に疲労が残る</li>
+      <li>投球フォームが乱れ、制球難や故障リスクが増す</li>
+      <li>試合後半で集中力が低下する</li>
+      <li>リリーフ待機中に体温・心拍が高止まりしやすい</li>
+    </ul>
+    <p>これは「火力のあるエンジンに小さな冷却装置を積んでいる状態」。  
+    出力のポテンシャルを活かすためには、VO₂maxという“冷却システム”の整備が欠かせない。</p>
+  </div>
+
+  <div class="page" data-page="6">
+    <h2>5. VO₂max数値が示す意味</h2>
+    <table>
+      <tr><th>VO₂max（ml/kg/min）</th><th>状態</th><th>投手での傾向</th></tr>
+      <tr><td>40未満</td><td>非トレーニー水準</td><td>疲労回復が遅い・再現性が低い</td></tr>
+      <tr><td>45〜55</td><td>一般的アスリート</td><td>中盤以降に疲労が目立つ</td></tr>
+      <tr><td><strong>58〜62</strong></td><td><strong>理想ゾーン</strong></td><td>安定した投球・高い集中持続力</td></tr>
+      <tr><td>65以上</td><td>持久系エリート</td><td>長時間の投球でも崩れにくい</td></tr>
+    </table>
+    <p>VO₂maxは単なる「走る能力」ではなく、<strong>神経系の安定・体温制御・疲労回復速度</strong>すべてを支える基盤指標である。</p>
+  </div>
+
+  <div class="page" data-page="7">
+    <h2>6. クーパー走（12分走）による評価</h2>
+    <p>最大酸素摂取量を推定する簡易的なフィールドテストとして、<strong>クーパー走</strong>が広く用いられている。</p>
+    <p>推定式：<code>VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</code></p>
+    <table>
+      <tr><th>12分距離</th><th>推定VO₂max</th><th>評価</th></tr>
+      <tr><td>2500 m</td><td>約45</td><td>平均的</td></tr>
+      <tr><td>2800 m</td><td>約52</td><td>良好</td></tr>
+      <tr><td>3100 m</td><td>約58</td><td>理想</td></tr>
+      <tr><td>3200 m</td><td>約60</td><td>エース級</td></tr>
+    </table>
+    <p>この距離を“持久力”ではなく“回復力スコア”として捉えると、  
+    投手にとっての意味がより具体的に見えてくる。</p>
+  </div>
+
+    <div class="page" data-page="8">
+    <h2>7+. YO-YOテストによるVO₂max評価</h2>
+    <p><strong>Yo-Yo Intermittent Recovery Test</strong>は、断続的に高強度運動を繰り返す競技者向けフィールドテスト。  
+    投球のような「出力と休息のサイクル」を再現できるため、投手に適している。</p>
+
+    <h3>● テスト概要</h3>
+    <ul>
+      <li><strong>IR1：</strong>20mシャトル走＋10秒休息。中強度〜一般層向け</li>
+      <li><strong>IR2：</strong>20mシャトル走＋10秒休息。高強度（大学・社会人）</li>
+      <li>音声に合わせて往復。段階的に速度上昇。限界まで継続。</li>
+    </ul>
+
+    <h3>● 推定式（Bangsbo, 2008）</h3>
+    <p><code>VO₂max ≒ (距離[m] × 0.0084) + 36.4</code></p>
+    <table>
+      <tr><th>距離</th><th>推定VO₂max</th><th>評価</th></tr>
+      <tr><td>1600m</td><td>約49</td><td>平均</td></tr>
+      <tr><td>2000m</td><td>約53</td><td>良好</td></tr>
+      <tr><td>2400m</td><td>約56</td><td>理想</td></tr>
+      <tr><td>2800m</td><td>約60</td><td>エース級</td></tr>
+    </table>
+
+    <h3>● クーパー走との違い</h3>
+    <table>
+      <tr><th>項目</th><th>クーパー走</th><th>YO-YOテスト</th></tr>
+      <tr><td>目的</td><td>最大持久力</td><td>断続的回復力</td></tr>
+      <tr><td>形式</td><td>12分連続走</td><td>20m往復＋休息</td></tr>
+      <tr><td>強度</td><td>中〜高</td><td>高〜極高（後半で急上昇）</td></tr>
+      <tr><td>適用</td><td>一般アスリート</td><td>野球・サッカー等の競技向け</td></tr>
+    </table>
+    <p>VO₂max改善目安：IR1で2400m（≒56）を目標。</p>
+  </div>
+
+  <div class="page" data-page="9">
+    <h2>8. VO₂maxを高める実践トレーニング</h2>
+    <p>最大酸素摂取量を高めるには、「筋」と「心肺」の両方を同時に刺激する構成が有効。</p>
+    <h3>① インターバルラン（トラック）</h3>
+    <ul>
+      <li>400m × 10本（レスト90秒）</li>
+      <li>心拍：170〜180 bpm</li>
+      <li>週2回／6〜8週で＋5〜10%改善</li>
+    </ul>
+    <h3>② トレッドミル・インターバル</h3>
+    <ul>
+      <li>30秒全力 → 90秒回復 × 8セット</li>
+      <li>酸素利用と乳酸除去能力を同時向上</li>
+    </ul>
+    <h3>③ PHA（循環式ウエイト）</h3>
+    <ul>
+      <li>SQ → Push-up → Row → Lunge → Burpee</li>
+      <li>各30秒×3セット。心拍を150〜170帯に維持</li>
+    </ul>
+    <h3>④ 呼吸リカバリートレーニング</h3>
+    <ul>
+      <li>投球間に心拍を1分で「安静域」に戻す練習</li>
+      <li>鼻吸気＋長い呼気（4〜6秒）で副交感神経を優位化</li>
+    </ul>
+  </div>
+
+  <div class="page" data-page="10">
+    <h2>9. 各カテゴリーにおけるVO₂maxの意義</h2>
+    <p>野球の発達段階ごとに、VO₂maxの“使い方”は異なる。単に数値を追うのではなく、  
+    その段階に応じた<strong>目的＝酸素を使う能力</strong>を育てることが重要。</p>
+    <table>
+      <tr><th>カテゴリー</th><th>VO₂max目安</th><th>目的・指導意図</th></tr>
+      <tr><td>学童</td><td>40〜48</td><td>基礎代謝を高め、長時間のプレー耐性を育てる</td></tr>
+      <tr><td>中学</td><td>45〜52</td><td>成長期の筋肥大に伴う疲労処理を支える</td></tr>
+      <tr><td>高校</td><td>50〜57</td><td>夏場・連投時の体温・心拍安定力</td></tr>
+      <tr><td>大学</td><td>53〜60</td><td>週末連戦や登板間の回復速度を養う</td></tr>
+      <tr><td>社会人</td><td>55〜62</td><td>仕事＋練習両立下での疲労管理能力</td></tr>
+      <tr><td>独立リーグ</td><td>56〜63</td><td>遠征・移動・炎天下対応の体力基盤</td></tr>
+      <tr><td>プロ</td><td>58〜65+</td><td>長期シーズンを通したエネルギー回復力</td></tr>
+    </table>
+    <p><strong>指導者への示唆：</strong>VO₂maxは「走力」ではなく「リカバリー力」。  
+    どの年代でも、目的を“酸素の使い方教育”として設定することで成果が変わる。</p>
+  </div>
+
+  <div class="page" data-page="11">
+    <h2>10. 先発投手が狙うべきVO₂maxライン</h2>
+    <table>
+      <tr><th>役割</th><th>VO₂max</th><th>クーパー距離</th><th>特徴</th></tr>
+      <tr><td>リリーフ</td><td>50〜55</td><td>2700〜2950m</td><td>短時間高出力特化</td></tr>
+      <tr><td><strong>先発（理想）</strong></td><td><strong>58〜62</strong></td><td><strong>3100〜3200m</strong></td><td><strong>持続力・集中力・回復安定</strong></td></tr>
+      <tr><td>エース級</td><td>63+</td><td>3250m+</td><td>再現性と耐性が極めて高い</td></tr>
+    </table>
+    <p><strong>55を超えると「持つ」。60を超えると「勝てる体」になる。</strong></p>
+  </div>
+
+  <div class="page" data-page="12">
+    <h2>11. エビデンス</h2>
+    <p>主要な研究では、プロ投手でもVO₂maxは平均53〜55ml/kg/min前後と報告されている。</p>
+    <table>
+      <tr><th>研究</th><th>対象</th><th>結果</th></tr>
+      <tr><td>Yang, 2014</td><td>プロ野球投手</td><td>平均53.6</td></tr>
+      <tr><td>Gillett, 2016</td><td>米大学投手</td><td>48.1±5.3</td></tr>
+      <tr><td>Clingman, 2023</td><td>先発 vs 救援</td><td>先発の方が高値を示す傾向</td></tr>
+    </table>
+    <p>推定式：<code>VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</code>（Cooper, 1968 JAMA）</p>
+  </div>
+
+  <div class="page" data-page="13">
+    <h2>12. 参考文献</h2>
+    <ol>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/24832970/" target="_blank">Yang, 2014</a></li>
+      <li><a href="https://www.researchgate.net/publication/295920185_A_Description_and_Comparison_of_Cardiorespiratory_Fitness_Measures_in_Relation_to_Pitching_Performance_Among_Professional_Baseball_Pitchers" target="_blank">Gillett, 2016</a></li>
+      <li><a href="https://oasis.library.unlv.edu/thesesdissertations/4658/" target="_blank">Clingman, 2023</a></li>
+      <li><a href="https://jamanetwork.com/journals/jama/article-abstract/336612" target="_blank">Cooper, 1968</a></li>
+    </ol>
+    <p style="color:#64748b;">© 2025 ADJUSTMENT LAB — Pitching Performance Notes</p>
+  </div>
+</div>
+
+<!-- 🔽 ナビゲーション -->
+<div id="nav-controls">
+  <div class="nav-btn" id="prev">← 戻る</div>
+  <div class="nav-btn" id="home">↑ トップ</div>
+  <div class="nav-btn" id="next">進む →</div>
+</div>
+
+<script>
+let currentPage = 1;
+const pages = document.querySelectorAll(".page");
+function showPage(n){
+  pages.forEach(p => p.style.display="none");
+  const page = pages[n-1];
+  if(page){ page.style.display="block"; window.scrollTo(0,0); }
+}
+document.getElementById("next").onclick = ()=>{
+  if(currentPage < pages.length){ currentPage++; showPage(currentPage); }
+};
+document.getElementById("prev").onclick = ()=>{
+  if(currentPage > 1){ currentPage--; showPage(currentPage); }
+};
+document.getElementById("home").onclick = ()=>{
+  currentPage = 1; showPage(currentPage);
+};
+showPage(currentPage);
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("./service-worker.js");
+}
+</script>
+</body>
+</html>
+
