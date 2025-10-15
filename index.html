@@ -40,6 +40,7 @@ body{
 /* ✅ ページスクロールのバウンド防止と自然な高さ調整 */
 html, body {
   overscroll-behavior: none; /* ← スマホで跳ね返らない */
+    overscroll-behavior-y: none;
 }
 
 #flipbook {
@@ -277,7 +278,6 @@ th{ background:#f3f4f6; color:#1e3a8a }
     height: auto;
     min-height: 100%;
     overflow-y: auto;
-    overscroll-behavior-y: none;
   }
 
   #flipbook {
