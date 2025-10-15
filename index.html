@@ -166,6 +166,19 @@ th{ background:#f3f4f6; color:#1e3a8a }
   line-height: 1.4;
   font-weight: 700;
 }
+  /* 改行禁止をデフォルトに設定 */
+.page h1, .page h2, .subtitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+/* スマホ（幅600px以下）のみ改行許可 */
+@media (max-width: 600px) {
+  .page h1, .page h2, .subtitle {
+    white-space: normal;
+  }
+}
 
 /* ✅ サブテキスト調整 */
 .page p.muted {
