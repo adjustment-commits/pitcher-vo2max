@@ -1,11 +1,11 @@
 {
-  "name": "投手 × VO₂max — White Edition",
-  "short_name": "VO2max Flipfile",
+  "name": "投手 × VO₂max — Flipbook",
+  "short_name": "VO₂max Flipbook",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
-  "description": "投手のための最大酸素摂取量（VO₂max）トレーニング資料。出力と回復、両輪の科学。",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -17,5 +17,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "description": "投手がVO₂maxを理解し、出力と回復の両輪で投球力を構築するための教育Flipbook資料。"
 }
