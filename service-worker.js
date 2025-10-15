@@ -1,39 +1,44 @@
-const CACHE_NAME = "vo2max-flipbook-v1";
-const ASSETS_TO_CACHE = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./service-worker.js",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+// =============================
+// 投手 × VO₂max — Flipbook PWA
+// =============================
+
+const CACHE_NAME = "pitcher-vo2max-v1";
+const urlsToCache = [
+  "index.html",
+  "manifest.json",
+  "icons/icon-192.png",
+  "icons/icon-512.png",
+  // CSSや画像、フォントなどを後で追加可
 ];
 
-// インストール時にキャッシュ
+// インストール時にキャッシュ登録
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(ASSETS_TO_CACHE))
-      .then(self.skipWaiting())
+    caches.open(CACHE_NAME).then(cache => {
+      console.log("[SW] Caching app shell...");
+      return cache.addAll(urlsToCache);
+    })
   );
 });
 
-// アクティブ時に古いキャッシュ削除
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.map(key => {
-        if (key !== CACHE_NAME) return caches.delete(key);
-      }))
-    )
-  );
-  self.clients.claim();
-});
-
-// リクエスト時のキャッシュ制御
+// リクエストをキャッシュから返却
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-      .catch(() => caches.match("./index.html"))
+    caches.match(event.request).then(response => {
+      // キャッシュがあれば即返す／なければネットワークへ
+      return response || fetch(event.request);
+    })
   );
+});
+
+// 古いキャッシュを削除
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+      );
+    })
+  );
+  console.log("[SW] Activated and cleaned old caches");
 });
