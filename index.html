@@ -3,293 +3,364 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>投手 × VO₂max — White Edition</title>
+<title>投手 × VO₂max — Flipbook</title>
 
+<!-- ✅ PWA設定 -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 
+<!-- ✅ jQuery & turn.js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/blasten/turn.js/turn.min.js"></script>
+
 <style>
 body {
-  background:#ffffff;
-  color:#1e293b;
-  font-family:'Noto Sans JP',sans-serif;
   margin:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  min-height:100vh;
-}
-
-#container {
-  width:90%;
-  max-width:900px;
   background:#ffffff;
-  border:1px solid #d1d5db;
-  border-radius:12px;
-  box-shadow:0 0 18px rgba(0,0,0,0.05);
+  color:#1f2937;
+  font-family:'Noto Sans JP',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+#flipbook {
+  width:900px;
+  height:600px;
+  box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+.page {
+  background:#ffffff;
+  border:1px solid #e5e7eb;
+  color:#111827;
   padding:40px;
-  margin:60px 0 80px;
+  box-sizing:border-box;
+  overflow-y:auto;
+  position:relative;
 }
-
-h1,h2,h3 {
-  color:#2563eb;
-  margin-top:0;
-}
-a { color:#1d4ed8; text-decoration:none; }
-p,li { line-height:1.9; }
-ul{margin:8px 0 0 0;padding-left:20px;}
+h1,h2,h3{color:#2563eb;margin-top:0;}
+a{color:#2563eb;text-decoration:none;}
+p,li{line-height:1.8;}
+ul{margin-top:6px;}
 table{width:100%;border-collapse:collapse;margin-top:10px;}
-th,td{border:1px solid #d1d5db;padding:8px;text-align:left;}
-th{background:#f3f4f6;color:#1f2937;}
-strong{color:#111827;}
+th,td{border:1px solid #e2e8f0;padding:8px;text-align:left;}
+th{background:#f3f4f6;color:#1e3a8a;}
+.page-num {
+  position:absolute;
+  bottom:8px;
+  right:12px;
+  font-size:13px;
+  color:#64748b;
+}
 
+/* --- ドロワーナビ --- */
+#menu-btn {
+  position:fixed;
+  top:10px;
+  left:12px;
+  background:#2563eb;
+  border:none;
+  color:#fff;
+  font-size:20px;
+  padding:8px 12px;
+  border-radius:8px;
+  z-index:20;
+  cursor:pointer;
+}
+#drawer {
+  position:fixed;
+  left:-260px;
+  top:0;
+  width:260px;
+  height:100vh;
+  background:#f9fafb;
+  border-right:1px solid #e5e7eb;
+  transition:left 0.3s ease;
+  padding:22px 14px;
+  box-sizing:border-box;
+  overflow-y:auto;
+  z-index:15;
+}
+#drawer.open{left:0;}
+#drawer h3{color:#2563eb;font-size:17px;margin-top:0;border-bottom:1px solid #e5e7eb;padding-bottom:6px;}
+#drawer a{display:block;color:#1f2937;font-size:15px;margin:10px 0;padding:6px 10px;border-radius:6px;}
+#drawer a:hover{background:#e0f2fe;}
+#overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.3);
+  z-index:10;
+  display:none;
+}
+
+/* --- ナビボタン --- */
 #nav-controls {
   position:fixed;
-  bottom:20px;
+  bottom:18px;
   right:16px;
   display:flex;
   gap:10px;
-  z-index:100;
+  z-index:25;
 }
 .nav-btn {
   background:#2563eb;
   border:none;
-  color:#ffffff;
+  color:#fff;
+  font-size:14px;
   padding:10px 16px;
   border-radius:6px;
   cursor:pointer;
-  transition:background 0.2s ease;
+  transition:opacity 0.2s;
 }
-.nav-btn:hover { background:#1d4ed8; }
+.nav-btn:hover {opacity:0.8;}
 
+/* --- スマホ対応 --- */
 @media(max-width:768px){
-  #container { padding:24px; }
-  .nav-btn{padding:8px 12px;font-size:14px;border-radius:8px;}
+  body{flex-direction:column;height:auto;overflow:auto;}
+  #flipbook{width:100%;height:auto;}
+  .page{height:auto;}
+  #nav-controls{bottom:12px;right:10px;gap:6px;}
+  .nav-btn{padding:8px 12px;font-size:12px;}
+  #menu-btn{top:8px;left:10px;font-size:18px;padding:6px 10px;}
 }
 </style>
 </head>
 
 <body>
-<div id="container">
-  <div class="page" data-page="1">
-    <h1 style="text-align:center;">投手 × VO₂max — Flipfile（White Edition）</h1>
-    <p style="text-align:center;color:#475569;">出力を生むのがウエイト。出力を戻すのが酸素。<br>両輪が揃って、先発投手は完成する。</p>
-    <p style="text-align:center;color:#64748b;margin-top:60px;">© 2025 ADJUSTMENT LAB</p>
+
+<!-- ☰ ドロワーメニュー -->
+<button id="menu-btn">☰</button>
+<div id="drawer">
+  <h3>目次</h3>
+  <a href="#" data-page="1">表紙</a>
+  <a href="#" data-page="2">1. 投手とVO₂max</a>
+  <a href="#" data-page="3">2. 二軸構造</a>
+  <a href="#" data-page="4">3. 高いメリット</a>
+  <a href="#" data-page="5">4. 低いデメリット</a>
+  <a href="#" data-page="6">5. 数値の意味</a>
+  <a href="#" data-page="7">6. クーパー走換算</a>
+  <a href="#" data-page="8">7+. YO-YOテスト</a>
+  <a href="#" data-page="9">8. トレーニング例</a>
+  <a href="#" data-page="10">9. 先発ライン</a>
+  <a href="#" data-page="11">10–11. エビデンス & 文献</a>
+  <a href="#" data-page="12">12. カテゴリー別活用</a>
+</div>
+<div id="overlay"></div>
+
+<!-- 📖 フリップブック -->
+<div id="flipbook">
+
+  <!-- Page 1 -->
+  <div class="page">
+    <h1 style="text-align:center;margin-top:100px;">投手 × VO₂max — Flipbook</h1>
+    <p style="text-align:center;color:#475569;margin-top:20px;">
+      出力を生むのがウエイト。出力を戻すのが酸素。<br>両輪が揃うことが投手としての能力。
+    </p>
+    <p style="text-align:center;margin-top:80px;color:#94a3b8;">© 2025 ADJUSTMENT LAB</p>
   </div>
 
-  <div class="page" data-page="2">
+  <!-- Page 2 -->
+  <div class="page">
     <h2>1. 投手にとってのVO₂maxとは？</h2>
-    <p>投手は「爆発的出力」と「回復」の両方を要求される特殊なアスリートである。  
-    VO₂max（最大酸素摂取量）は、その中でも<strong>疲労からどれだけ速く回復できるか</strong>を決める生命線だ。</p>
-    <p>酸素を多く取り込める身体は、乳酸や水素イオンなどの疲労物質を早く処理し、ATP再合成を速める。  
-    言い換えれば「一球ごとに回復する投手」は、VO₂maxが高い投手である。</p>
+    <p>投手の投球は「一球の力」ではなく、<strong>出力を繰り返すための回復速度</strong>で決まる。VO₂maxはその回復速度を支える“酸素エンジン”である。</p>
+    <p>VO₂max（最大酸素摂取量）は、体重1kgあたり1分間に取り込める酸素量（ml/kg/min）で表される。<br>
+    この値が高いほど<strong>疲労の処理・再合成の能力</strong>が高く、イニング間のリカバリーが速い。</p>
   </div>
 
-  <div class="page" data-page="3">
+  <!-- Page 3 -->
+  <div class="page">
     <h2>2. 投球エネルギーの二軸構造</h2>
-    <p>投手のパフォーマンスは、次の２つの“エネルギー軸”で構成される。</p>
+    <p><strong>ウエイト＝燃やす力／VO₂max＝燃えたあとを立て直す力</strong></p>
     <table>
-      <tr><th>系統</th><th>内容</th><th>主なトレーニング</th></tr>
-      <tr><td>① 出力系（Power）</td><td>ATP-CP系・解糖系で瞬間的に力を生み出す</td><td>ウエイト／スプリント／プライオ</td></tr>
-      <tr><td>② 回復系（Recovery）</td><td>酸素を使い、代謝物を処理して再エネルギー化</td><td>VO₂max向上トレーニング</td></tr>
+      <tr><th>軸</th><th>内容</th><th>主な手段</th></tr>
+      <tr><td>出力系</td><td>ATP-CP系・解糖系で力を生み出す</td><td>ウエイト・パワートレーニング</td></tr>
+      <tr><td>回復系</td><td>酸素を使って疲労物質を処理・再合成</td><td>VO₂maxトレーニング（ラン・サーキット）</td></tr>
     </table>
-    <p><strong>ウエイト＝燃やす力</strong>、<strong>VO₂max＝燃えたあとを立て直す力</strong>。  
-    出力と回復が噛み合ったとき、投手は「8回でも球質が落ちない」存在になる。</p>
+    <p>両者のバランスが取れるほど終盤になっても球質・リリース・テンポが落ちにくい。</p>
   </div>
 
-  <div class="page" data-page="4">
-    <h2>3. VO₂maxが高い投手の特徴</h2>
+  <!-- Page 4 -->
+  <div class="page">
+    <h2>3. VO₂maxが高いメリット</h2>
     <ul>
-      <li>イニング間・登板間の回復速度が速い</li>
-      <li>終盤でも球速・リリースの再現性が高い</li>
-      <li>心拍降下が早く、精神的に安定して投げられる</li>
-      <li>乳酸閾値（LT）が高く、疲労が蓄積しにくい</li>
+      <li>イニング間・登板間の回復が速い</li>
+      <li>終盤でも球速・リリース安定</li>
+      <li>自律神経の安定（緊張からの復帰が早い）</li>
+      <li>疲労蓄積が少なく、故障リスクが低い</li>
     </ul>
-    <p>VO₂maxが高い投手は、単に「走れる」選手ではない。  
-    <strong>身体のエネルギー管理能力が高い＝最後まで投げ抜く耐性がある</strong>ということだ。</p>
+    <p><em>例：</em> VO₂max 60ml/kg/minの投手は、同条件下で<br>
+      50ml/kg/minの投手よりも心拍数が早く安定する傾向がある。</p>
   </div>
 
-  <div class="page" data-page="5">
-    <h2>4. VO₂maxが低い投手のリスク</h2>
+  <!-- Page 5 -->
+  <div class="page">
+    <h2>4. VO₂maxが低いデメリット</h2>
     <ul>
-      <li>代謝回復が遅く、翌日に疲労が残る</li>
-      <li>投球フォームが乱れ、制球難や故障リスクが増す</li>
-      <li>試合後半で集中力が低下する</li>
-      <li>リリーフ待機中に体温・心拍が高止まりしやすい</li>
+      <li>回復が遅く疲労が残る（特に連投）</li>
+      <li>球速・制球の再現性が低い</li>
+      <li>心拍降下が遅く、集中力が乱れやすい</li>
+      <li>代謝ストレス蓄積によるフォームの崩れ</li>
     </ul>
-    <p>これは「火力のあるエンジンに小さな冷却装置を積んでいる状態」。  
-    出力のポテンシャルを活かすためには、VO₂maxという“冷却システム”の整備が欠かせない。</p>
+    <p>「火力はあるが冷却装置が小さいエンジン」状態。瞬発力型に偏ると、後半の球質維持が困難になる。</p>
   </div>
 
-  <div class="page" data-page="6">
-    <h2>5. VO₂max数値が示す意味</h2>
+  <!-- Page 6 -->
+  <div class="page">
+    <h2>5. VO₂maxの数値が意味するもの</h2>
     <table>
-      <tr><th>VO₂max（ml/kg/min）</th><th>状態</th><th>投手での傾向</th></tr>
-      <tr><td>40未満</td><td>非トレーニー水準</td><td>疲労回復が遅い・再現性が低い</td></tr>
-      <tr><td>45〜55</td><td>一般的アスリート</td><td>中盤以降に疲労が目立つ</td></tr>
-      <tr><td><strong>58〜62</strong></td><td><strong>理想ゾーン</strong></td><td>安定した投球・高い集中持続力</td></tr>
-      <tr><td>65以上</td><td>持久系エリート</td><td>長時間の投球でも崩れにくい</td></tr>
+      <tr><th>VO₂max</th><th>状態</th><th>傾向</th></tr>
+      <tr><td>40未満</td><td>非トレーニー</td><td>疲労蓄積・回復遅い</td></tr>
+      <tr><td>45〜55</td><td>平均</td><td>一般的大学・社会人レベル</td></tr>
+      <tr><td><strong>58〜62</strong></td><td><strong>理想ゾーン</strong></td><td><strong>球威・テンポ安定・回復良好</strong></td></tr>
+      <tr><td>70前後</td><td>持久系エリート</td><td>陸上・水泳特化（過剰）</td></tr>
     </table>
-    <p>VO₂maxは単なる「走る能力」ではなく、<strong>神経系の安定・体温制御・疲労回復速度</strong>すべてを支える基盤指標である。</p>
+    <p>VO₂maxは「走る力」ではなく、「出し続けられる力」。</p>
   </div>
 
-  <div class="page" data-page="7">
-    <h2>6. クーパー走（12分走）による評価</h2>
-    <p>最大酸素摂取量を推定する簡易的なフィールドテストとして、<strong>クーパー走</strong>が広く用いられている。</p>
-    <p>推定式：<code>VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</code></p>
-    <table>
-      <tr><th>12分距離</th><th>推定VO₂max</th><th>評価</th></tr>
-      <tr><td>2500 m</td><td>約45</td><td>平均的</td></tr>
-      <tr><td>2800 m</td><td>約52</td><td>良好</td></tr>
-      <tr><td>3100 m</td><td>約58</td><td>理想</td></tr>
-      <tr><td>3200 m</td><td>約60</td><td>エース級</td></tr>
-    </table>
-    <p>この距離を“持久力”ではなく“回復力スコア”として捉えると、  
-    投手にとっての意味がより具体的に見えてくる。</p>
-  </div>
-
-    <div class="page" data-page="8">
-    <h2>7+. YO-YOテストによるVO₂max評価</h2>
-    <p><strong>Yo-Yo Intermittent Recovery Test</strong>は、断続的に高強度運動を繰り返す競技者向けフィールドテスト。  
-    投球のような「出力と休息のサイクル」を再現できるため、投手に適している。</p>
-
-    <h3>● テスト概要</h3>
-    <ul>
-      <li><strong>IR1：</strong>20mシャトル走＋10秒休息。中強度〜一般層向け</li>
-      <li><strong>IR2：</strong>20mシャトル走＋10秒休息。高強度（大学・社会人）</li>
-      <li>音声に合わせて往復。段階的に速度上昇。限界まで継続。</li>
-    </ul>
-
-    <h3>● 推定式（Bangsbo, 2008）</h3>
-    <p><code>VO₂max ≒ (距離[m] × 0.0084) + 36.4</code></p>
+  <!-- Page 7 -->
+  <div class="page">
+    <h2>6. クーパー走（12分走）による推定</h2>
+    <p>VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</p>
     <table>
       <tr><th>距離</th><th>推定VO₂max</th><th>評価</th></tr>
+      <tr><td>2500m</td><td>約45</td><td>平均</td></tr>
+      <tr><td>2800m</td><td>約52</td><td>良好</td></tr>
+      <tr><td>3100m</td><td>約58</td><td>理想</td></tr>
+      <tr><td>3200m</td><td>約60</td><td>エース級</td></tr>
+    </table>
+    <p><strong>距離＝回復力の指標。</strong> 12分で3100〜3200mを走破できれば、登板後のリカバリー速度も速い。</p>
+  </div>
+
+  <!-- Page 8 -->
+  <div class="page">
+    <h2>7+. YO-YOテストによるVO₂max評価</h2>
+    <p>Yo-Yo Intermittent Recovery Test（YO-YOテスト）は、断続的な高強度運動能力と回復力を測定する。</p>
+    <h3>VO₂max ≒ (距離[m] × 0.0084) + 36.4</h3>
+    <table>
+      <tr><th>距離</th><th>VO₂max</th><th>評価</th></tr>
       <tr><td>1600m</td><td>約49</td><td>平均</td></tr>
       <tr><td>2000m</td><td>約53</td><td>良好</td></tr>
       <tr><td>2400m</td><td>約56</td><td>理想</td></tr>
       <tr><td>2800m</td><td>約60</td><td>エース級</td></tr>
     </table>
-
-    <h3>● クーパー走との違い</h3>
-    <table>
-      <tr><th>項目</th><th>クーパー走</th><th>YO-YOテスト</th></tr>
-      <tr><td>目的</td><td>最大持久力</td><td>断続的回復力</td></tr>
-      <tr><td>形式</td><td>12分連続走</td><td>20m往復＋休息</td></tr>
-      <tr><td>強度</td><td>中〜高</td><td>高〜極高（後半で急上昇）</td></tr>
-      <tr><td>適用</td><td>一般アスリート</td><td>野球・サッカー等の競技向け</td></tr>
-    </table>
-    <p>VO₂max改善目安：IR1で2400m（≒56）を目標。</p>
+    <p>IR1（中強度）＝一般層／IR2（高強度）＝大学・社会人。<br>
+    投手ではIR1で2400m（≒56）が一つの基準となる。</p>
   </div>
-
-  <div class="page" data-page="9">
-    <h2>8. VO₂maxを高める実践トレーニング</h2>
-    <p>最大酸素摂取量を高めるには、「筋」と「心肺」の両方を同時に刺激する構成が有効。</p>
-    <h3>① インターバルラン（トラック）</h3>
+  <!-- Page 9 -->
+  <div class="page">
+    <h2>8. VO₂maxを高めるトレーニング例</h2>
     <ul>
-      <li>400m × 10本（レスト90秒）</li>
-      <li>心拍：170〜180 bpm</li>
-      <li>週2回／6〜8週で＋5〜10%改善</li>
-    </ul>
-    <h3>② トレッドミル・インターバル</h3>
-    <ul>
-      <li>30秒全力 → 90秒回復 × 8セット</li>
-      <li>酸素利用と乳酸除去能力を同時向上</li>
-    </ul>
-    <h3>③ PHA（循環式ウエイト）</h3>
-    <ul>
-      <li>SQ → Push-up → Row → Lunge → Burpee</li>
-      <li>各30秒×3セット。心拍を150〜170帯に維持</li>
-    </ul>
-    <h3>④ 呼吸リカバリートレーニング</h3>
-    <ul>
-      <li>投球間に心拍を1分で「安静域」に戻す練習</li>
-      <li>鼻吸気＋長い呼気（4〜6秒）で副交感神経を優位化</li>
+      <li><strong>インターバルラン：</strong>400m × 10本（レスト90秒）</li>
+      <li><strong>トレッドミル：</strong>30秒全力→90秒回復 × 8セット</li>
+      <li><strong>ウエイトサーキット：</strong>SQ → PUSH-UP → ROW → BURPEE</li>
+      <li><strong>呼吸リカバリー：</strong>1分以内に心拍を投球前帯へ戻す</li>
     </ul>
   </div>
 
-  <div class="page" data-page="10">
-    <h2>9. 各カテゴリーにおけるVO₂maxの意義</h2>
-    <p>野球の発達段階ごとに、VO₂maxの“使い方”は異なる。単に数値を追うのではなく、  
-    その段階に応じた<strong>目的＝酸素を使う能力</strong>を育てることが重要。</p>
+  <!-- Page 10 -->
+  <div class="page">
+    <h2>9. 先発投手が狙うべきVO₂maxライン</h2>
     <table>
-      <tr><th>カテゴリー</th><th>VO₂max目安</th><th>目的・指導意図</th></tr>
-      <tr><td>学童</td><td>40〜48</td><td>基礎代謝を高め、長時間のプレー耐性を育てる</td></tr>
-      <tr><td>中学</td><td>45〜52</td><td>成長期の筋肥大に伴う疲労処理を支える</td></tr>
-      <tr><td>高校</td><td>50〜57</td><td>夏場・連投時の体温・心拍安定力</td></tr>
-      <tr><td>大学</td><td>53〜60</td><td>週末連戦や登板間の回復速度を養う</td></tr>
-      <tr><td>社会人</td><td>55〜62</td><td>仕事＋練習両立下での疲労管理能力</td></tr>
-      <tr><td>独立リーグ</td><td>56〜63</td><td>遠征・移動・炎天下対応の体力基盤</td></tr>
-      <tr><td>プロ</td><td>58〜65+</td><td>長期シーズンを通したエネルギー回復力</td></tr>
+      <tr><th>役割</th><th>目標VO₂max</th><th>クーパー距離</th></tr>
+      <tr><td>リリーフ</td><td>50〜55</td><td>2700〜2950m</td></tr>
+      <tr><td>先発（理想）</td><td>58〜62</td><td>3100〜3200m</td></tr>
+      <tr><td>投手陣の軸</td><td>63+</td><td>3250m+</td></tr>
     </table>
-    <p><strong>指導者への示唆：</strong>VO₂maxは「走力」ではなく「リカバリー力」。  
-    どの年代でも、目的を“酸素の使い方教育”として設定することで成果が変わる。</p>
+    <p>55を越えると「持つように」なり、60を越えると「勝てる体」に近づく。</p>
   </div>
 
-  <div class="page" data-page="11">
-    <h2>10. 先発投手が狙うべきVO₂maxライン</h2>
+  <!-- Page 11–12 -->
+  <div class="page">
+    <h2>10–11. エビデンス & 参考文献</h2>
     <table>
-      <tr><th>役割</th><th>VO₂max</th><th>クーパー距離</th><th>特徴</th></tr>
-      <tr><td>リリーフ</td><td>50〜55</td><td>2700〜2950m</td><td>短時間高出力特化</td></tr>
-      <tr><td><strong>先発（理想）</strong></td><td><strong>58〜62</strong></td><td><strong>3100〜3200m</strong></td><td><strong>持続力・集中力・回復安定</strong></td></tr>
-      <tr><td>エース級</td><td>63+</td><td>3250m+</td><td>再現性と耐性が極めて高い</td></tr>
+      <tr><th>研究</th><th>VO₂max</th><th>内容</th></tr>
+      <tr><td>Yang (2014)</td><td>53.6</td><td>プロ投手の平均値。位置別比較で投手は他より低値。</td></tr>
+      <tr><td>Gillett (2016)</td><td>48.1±5.3</td><td>大学投手。心肺機能と登板成績に正相関。</td></tr>
+      <tr><td>Clingman (2023)</td><td>先発＞救援</td><td>登板間リカバリーとVO₂maxの関係を実証。</td></tr>
     </table>
-    <p><strong>55を超えると「持つ」。60を超えると「勝てる体」になる。</strong></p>
-  </div>
-
-  <div class="page" data-page="12">
-    <h2>11. エビデンス</h2>
-    <p>主要な研究では、プロ投手でもVO₂maxは平均53〜55ml/kg/min前後と報告されている。</p>
-    <table>
-      <tr><th>研究</th><th>対象</th><th>結果</th></tr>
-      <tr><td>Yang, 2014</td><td>プロ野球投手</td><td>平均53.6</td></tr>
-      <tr><td>Gillett, 2016</td><td>米大学投手</td><td>48.1±5.3</td></tr>
-      <tr><td>Clingman, 2023</td><td>先発 vs 救援</td><td>先発の方が高値を示す傾向</td></tr>
-    </table>
-    <p>推定式：<code>VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</code>（Cooper, 1968 JAMA）</p>
-  </div>
-
-  <div class="page" data-page="13">
-    <h2>12. 参考文献</h2>
-    <ol>
+    <p>クーパー走換算式（Cooper, 1968）：VO₂max ≒ (距離[m] − 504.9) ÷ 44.73</p>
+    <h3>出典リンク</h3>
+    <ul>
       <li><a href="https://pubmed.ncbi.nlm.nih.gov/24832970/" target="_blank">Yang, 2014</a></li>
       <li><a href="https://www.researchgate.net/publication/295920185_A_Description_and_Comparison_of_Cardiorespiratory_Fitness_Measures_in_Relation_to_Pitching_Performance_Among_Professional_Baseball_Pitchers" target="_blank">Gillett, 2016</a></li>
       <li><a href="https://oasis.library.unlv.edu/thesesdissertations/4658/" target="_blank">Clingman, 2023</a></li>
-      <li><a href="https://jamanetwork.com/journals/jama/article-abstract/336612" target="_blank">Cooper, 1968</a></li>
-    </ol>
-    <p style="color:#64748b;">© 2025 ADJUSTMENT LAB — Pitching Performance Notes</p>
+    </ul>
   </div>
-</div>
 
-<!-- 🔽 ナビゲーション -->
+  <!-- Page 13 -->
+  <div class="page">
+    <h2>12. 各カテゴリー別 VO₂max の活用</h2>
+    <table>
+      <tr><th>カテゴリー</th><th>VO₂max目安</th><th>目的・活用</th></tr>
+      <tr><td>学童</td><td>40〜48</td><td>動き続ける体の基礎づくり</td></tr>
+      <tr><td>中学</td><td>45〜52</td><td>成長期の筋発達と回復力の両立</td></tr>
+      <tr><td>高校</td><td>50〜57</td><td>夏場・連戦に耐える心肺形成</td></tr>
+      <tr><td>大学</td><td>53〜60</td><td>週末登板・試合連続対応</td></tr>
+      <tr><td>社会人</td><td>55〜62</td><td>仕事＋野球のリカバリーバランス</td></tr>
+      <tr><td>独立リーグ</td><td>56〜63</td><td>連投・遠征に強い適応力</td></tr>
+      <tr><td>プロ</td><td>58〜65+</td><td>年間安定した精神・生理的パフォーマンス</td></tr>
+    </table>
+    <p><strong>要点：</strong>上のカテゴリーほど「出力総量」より「出力を維持する酸素効率」が重要。</p>
+  </div>
+
+</div> <!-- /flipbook -->
+
+
+<!-- 📍 ナビ -->
 <div id="nav-controls">
-  <div class="nav-btn" id="prev">← 戻る</div>
-  <div class="nav-btn" id="home">↑ トップ</div>
-  <div class="nav-btn" id="next">進む →</div>
+  <button class="nav-btn" id="prev">← 戻る</button>
+  <button class="nav-btn" id="home">↑ トップ</button>
+  <button class="nav-btn" id="next">進む →</button>
 </div>
 
 <script>
-let currentPage = 1;
-const pages = document.querySelectorAll(".page");
-function showPage(n){
-  pages.forEach(p => p.style.display="none");
-  const page = pages[n-1];
-  if(page){ page.style.display="block"; window.scrollTo(0,0); }
-}
-document.getElementById("next").onclick = ()=>{
-  if(currentPage < pages.length){ currentPage++; showPage(currentPage); }
-};
-document.getElementById("prev").onclick = ()=>{
-  if(currentPage > 1){ currentPage--; showPage(currentPage); }
-};
-document.getElementById("home").onclick = ()=>{
-  currentPage = 1; showPage(currentPage);
-};
-showPage(currentPage);
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("./service-worker.js");
-}
+$(function(){
+  const $book = $("#flipbook");
+  let current = 1;
+  const pages = $(".page").length;
+
+  function showPage(n){
+    $(".page").hide().eq(n-1).fadeIn(250);
+    current = n;
+  }
+
+  showPage(1);
+
+  $("#next").on("click",()=>{ if(current<pages) showPage(current+1); });
+  $("#prev").on("click",()=>{ if(current>1) showPage(current-1); });
+  $("#home").on("click",()=> showPage(1));
+
+  $("#menu-btn").on("click",()=>{$("#drawer").toggleClass("open");$("#overlay").fadeToggle(200);});
+  $("#overlay").on("click",()=>{$("#drawer").removeClass("open");$("#overlay").fadeOut(200);});
+  $("#drawer a").on("click",function(e){
+    e.preventDefault();
+    const page = $(this).data("page");
+    showPage(page);
+    $("#drawer").removeClass("open");
+    $("#overlay").fadeOut(200);
+  });
+
+  // スワイプ操作（スマホ対応）
+  let startX=0;
+  document.addEventListener("touchstart",e=>{startX=e.touches[0].clientX;});
+  document.addEventListener("touchend",e=>{
+    const endX=e.changedTouches[0].clientX;
+    if(Math.abs(startX-endX)<50)return;
+    if(startX>endX){ if(current<pages) showPage(current+1); }
+    else{ if(current>1) showPage(current-1); }
+  });
+
+  // ✅ Service Worker登録
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(()=>console.log("Service Worker registered"))
+      .catch(err=>console.error("SW failed:",err));
+  }
+});
 </script>
+
 </body>
 </html>
-
+  
